@@ -1,0 +1,122 @@
+# Colors Defined
+RED = "\033[91m"
+WHITE = "\033[97m"
+PURPLE = "\033[95m"
+RESET = "\033[0m"
+
+# Queue Creation
+queue = []
+
+#Functions for main menu
+def MainMenu():
+    print(f"{PURPLE}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{RESET}")
+    print(f"{WHITE}Welcome to the coffee shop :){RESET}")
+    print(f"{PURPLE}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{RESET}")
+
+# Ascii art for the coffee shop
+    print(f"""{WHITE}
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░
+░░▒▓██████████████████████████████████████████▓▓░░
+░░▒▓████▓▒▒█▒▒▒▒▒▓░▒▓░▒▓░▒▓██▒▒█░█▒▓▒▒█▒▒▒████▓▓░░
+░░▒▓██▓█▒▓██▒▓▒▒▒▓░▒▓░▒▓░▒▓██▒▓█░▒░▒▒▓▓░▓░█▓██▓▓░░
+░░▒▓████▒▓▓█▒▓▒▒▓█░▓█░██░▓██▓▓▓█░█░▒▒▓▓░██████▓▓░░
+░░▒▓██████████████████████████████████████████▓▓░░
+░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░
+░░░▒▓▓████████████████████████████▓▓▓▓▓█████▓▓▓░░░
+░░░▒▓▓████████████████████████▓▓▒▒▒▒▒▓▓▓▓███▓▓▒░░░
+░░░▒▓▓█████▓▓▓▓▓▓▓▓▓▓███████████████████████▓▓▒░░░
+░░░▒▓▓████▓▓▓▓▓▓▓▓▓▓▓▓█▓▓███████████████████▓▓▒░░░
+░░░▒▓▓███▓▓▓▓▓▓▓▓▓▓▓▓▒▒▓▓████████▓▓▓▓▓▓█████▓▓▒░░░
+░░░▒▓▓███▓▓▓▓▓▓▓▓█▓▓▒▒▒▒▓███████▓▓▓▓▓▓▓▒▓███▓▓▒░░░
+░░░▒▓▓███▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒█▓██████▓▓█▓▓▓▓▓▓███▓▓▒░░░
+░░░▒▓▓███▓▓▓▓▓▓▓▒▓▒▒▒▓▓▒████████▓▒▓▒▒▒▒▓▓███▓▓▒░░░
+░░░▒▓▓███▓▓▓▓▓▒▒▒▓▒▒▓▒▒▓████████▒▒▓▒▒▓▓▓▓███▓▓▒░░░
+░░░▒▓▓███▓▓▓▓▓▓▒▒▓▓▒▒▓▓▓████████▒▒▓▓▓▓▓▓▓███▓▓▒░░░
+░░░▒▓▓██▓▓▓▒▒▒▒▒▒▓▒▓▓▓▓▓▓███████▒▒▓▓▓▓▓▓▓███▓▓▒░░░
+░░░▒▓▓██▓█████████▒▓▓▓▓▓▓███████▓▓█▓▓▓▓█████▓▓▒░░░
+░░░▒▓▓█▓▓█████████▒▓▓▓▓▓████████▓███████████▓▓▒░░░
+░░░▒▓▓██▓███▓█▓███▒▓▓▓▓▓████████████████████▓▓▒░░░
+░░░▒▓▓██▓█▓▓▓▓██▓█▒██████▓██████▓▒█▒▒▒▒▒▓███▓▓▒░░░
+░░░▒▓▓██▓███████▓█▒█████████████▓▓▓▓▓▓▓▓▓███▓▓▒░░░
+░░░▒▓▓██▓█▓▓▓███▓█▒█████████████▒▒▓▒▒▓▓▓▓███▓▓▒░░░
+░░░▒▓▓██▓█████████▒█████████████▓▓█▓▓▓▓▓████▓▓▒░░░
+░░░▒▓▓██▒████████▓▒██████████▓▓▓▓▓▓▓▓▓▓▓▓▓▓█▓▓▒░░░
+░░▓████████████████████████████████████████████▓░░
+░░▓███████████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+{RESET}""")
+
+# Funtion for the duisplay of the queue also tracks the index 1, 2, 3 etc
+def displayQueue():
+    if not queue:
+        print(f"{RED}[Empty Queue]{RESET}")
+    else:
+        for i, (name, order) in enumerate(queue, start=1):
+            print(f"{WHITE}{i}. {name} - Order: {order}{RESET}")
+
+# Funtions for taking order and also displays the queue display
+def takeOrder(orderOption):
+    orderInput = input(f"{WHITE}What is the name of the customer?: {RESET}")
+    queue.append((orderInput, orderOption))
+   
+    print(f"\n{WHITE}Order added to the queue!{RESET}")
+    print(f"{PURPLE}Current queue:{RESET}")
+    displayQueue()
+
+# Funtion to pop the first customer in the queue and serve them and print empty when queue is emtpy also print the queue display
+def serveCustomer():
+    if queue:  
+        served = queue.pop(0)  
+        print(f"\n{WHITE}Serving {served[0]} who ordered {served[1]}.{RESET}")
+    else:
+        print(f"\n{RED}The queue is empty! No customers to serve.{RESET}")
+   
+    print(f"{PURPLE}Current queue:{RESET}")
+    displayQueue()
+
+# Function to display the menu options when user inputs m
+def DisplayForMenu():
+    print(f"{PURPLE}~~~~~~~~~~~~~~~~{RESET}")
+    print(f"{WHITE}Menu:{RESET}")
+    print(f"{PURPLE}~~~~~~~~~~~~~~~~{RESET}")
+    print(f"{WHITE}1. Hot Coffee{RESET}")
+    print(f"{WHITE}2. Ice Coffee{RESET}")
+    print(f"{WHITE}3. Muffin{RESET}")
+    print(f"{WHITE}4. Bacon, Egg, and Cheese{RESET}")
+    print(" ")
+
+# Displays Menu and welcomes
+MainMenu()
+print(f"{PURPLE}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{RESET}")
+
+# Main User loop for the shop
+while True:
+    UserInput = input(f"\n{WHITE}Enter your choice ('m' for menu, 'q' to check the wait list, 's' to serve a customer, 'e' to exit or (1-4) if you already know our options): {RESET}").lower()
+
+# Uesr if, elif, else statements for the menu options and also the queue display and serve customer
+    if UserInput == "1":
+        print(f"{WHITE}Your Hot Coffee is brewing...{RESET}")
+        takeOrder("Hot Coffee")
+    elif UserInput == "2":
+        print(f"{WHITE}Your Ice Coffee is brewing...{RESET}")
+        takeOrder("Ice Coffee")
+    elif UserInput == "3":
+        print(f"{WHITE}Your Muffin is baking...{RESET}")
+        takeOrder("Muffin")
+    elif UserInput == "4":
+        print(f"{WHITE}We're grilling your Bacon, Egg, and Cheese...{RESET}")
+        takeOrder("Bacon, Egg, and Cheese")
+    elif UserInput == "m":
+        DisplayForMenu()
+        print(f"\n{PURPLE}Please select an option (1-4) to place your order.{RESET}")
+    elif UserInput == "q":
+        print(f"\n{PURPLE}Current wait list:{RESET}")
+        displayQueue()
+    elif UserInput == "s":
+        serveCustomer()
+    elif UserInput == "e":
+        print(f"\n{WHITE}Thank you for visiting the coffee shop! Have a great day!{RESET}")
+        break
+    else:
+        print(f"\n{RED}Invalid input. Please enter a valid option (1-4, 'm', 'q', 's', or 'e').{RESET}")
